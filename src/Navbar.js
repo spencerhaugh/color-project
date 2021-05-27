@@ -31,7 +31,7 @@ export default class Navbar extends Component {
         return (
             <nav className="Navbar">
                 <div className="logo">
-                    <a href='/'>Color APP</a>
+                    <a href='/'>Palette Builder</a>
                 </div>
                 <div className='slider-container'>
                     <span>Level: {level}</span>
