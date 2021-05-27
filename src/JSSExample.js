@@ -24,6 +24,7 @@ const styles = {
 // define class: {}
 // add css styles. Must be camelCase and values need to be "strings"
 // Use "& element" to nest styles and include for example h1's within the secondary class
+// Add to an JSX element with className={classes.yourClassName}
 // export file as a higher order function as shown here: withStyles(yourStylesVariable)(yourComponent)
 
 
