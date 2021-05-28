@@ -34,7 +34,7 @@ export default class ColorBox extends Component {
                         <button className='copy-button'>Copy</button>
                     </div>
                     {showLink && (<Link to={moreUrl} onClick={e => e.stopPropagation()}>
-                        <span className='see-more'>More</span>
+                        <span className='see-more'>Shades</span>
                     </Link>)}
 
                 </div>
