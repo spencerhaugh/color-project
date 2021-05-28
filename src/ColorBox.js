@@ -4,7 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import chroma from 'chroma-js';
 import './ColorBox.css'
 
-export default class ColorBox extends Component {
+class ColorBox extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -18,10 +18,12 @@ export default class ColorBox extends Component {
         })
     };
     render() {
-        const { name, background, moreUrl, showLink } = this.props;
+        const { name, background, moreUrl, showLink, classes } = this.props;
         const { copied } = this.state;
-        const isDarkColor = chroma(background).luminance() <= .2;
-        const isLightColor = chroma(background).luminance() >= .44;
+        // Determine the color luminance to apply styles light/dark against 
+        const isDarkColor = chroma(background).luminance() <= .2; // chroma math to determine a Dark Color
+        const isLightColor = chroma(background).luminance() >= .44; // chroma math to determine a Light color
+
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>
                 <div className='ColorBox' style={{ background }}>
@@ -45,3 +47,5 @@ export default class ColorBox extends Component {
         )
     }
 }
+
+export default ColorBox;
