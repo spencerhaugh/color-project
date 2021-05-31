@@ -18,6 +18,7 @@ import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 400;
 
+// JSS Styles
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
@@ -76,20 +77,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+// React Functional Component
 export default function NewPaletteForm(props) {
+
+    // State Management
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const [currentColor, setCurrentColor] = useState('purple');
-    const [colors, setColors] = useState([{ color: "purple", name: "Yeet Purple" }, { color: "#90d48b", name: "Bad Weed Green" }]);
+    const [colors, setColors] = useState(props.palettes[0].colors);
     const [newName, setNewName] = useState({
         newColorName: '',
         newPaletteName: ''
     });
 
+    // Component Methods
     const handleDrawerOpen = () => {
         setOpen(true);
     };
-
     const handleDrawerClose = () => {
         setOpen(false);
     };
@@ -100,7 +104,9 @@ export default function NewPaletteForm(props) {
         const newColor = { color: currentColor, name: newName.newColorName }
         setColors([...colors, newColor])
         setNewName({ ...newName, newColorName: '' });
-
+    };
+    const clearColors = () => {
+        setColors([])
     };
     const handleChange = (evt) => {
         setNewName({ ...newName, [evt.target.name]: evt.target.value })
@@ -122,6 +128,7 @@ export default function NewPaletteForm(props) {
         setColors(arrayMove(colors, oldIndex, newIndex))
     }
 
+    // Use Effect
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
             return colors.every(
@@ -140,6 +147,7 @@ export default function NewPaletteForm(props) {
         });
     });
 
+    // Component Return
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -199,7 +207,7 @@ export default function NewPaletteForm(props) {
                 <Divider />
                 <Typography variant="h4">Design Your Palette</Typography>
                 <div>
-                    <Button variant="contained" color="secondary">Clear Palette</Button>
+                    <Button variant="contained" color="secondary" onClick={clearColors}>Clear Palette</Button>
                     <Button variant="contained" color="primary">Random Color</Button>
                 </div>
                 <ChromePicker
