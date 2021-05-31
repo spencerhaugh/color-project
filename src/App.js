@@ -8,7 +8,9 @@ import NewPaletteForm from './NewPaletteForm';
 import seedColors from './seedColors';
 
 function App() {
+
   const [palettes, setPalettes] = useState(seedColors);
+
   function findPalette(id) {
     return palettes.find(function (palette) {
       return palette.id === id
@@ -23,7 +25,7 @@ function App() {
       <Route
         exact
         path='/palette/new'
-        render={(routeProps) => <NewPaletteForm savePalette={savePalette} {...routeProps} />}
+        render={(routeProps) => <NewPaletteForm savePalette={savePalette} {...routeProps} palettes={palettes} />}
       />
       <Route
         exact
