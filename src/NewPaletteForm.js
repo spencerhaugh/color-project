@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -74,8 +74,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewPaletteForm() {
     const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    // const theme = useTheme();
+    const [open, setOpen] = useState(false);
+    const [currentColor, setCurrentColor] = useState('purple');
+    const [colors, setColors] = useState(["purple", "#e15764"])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -83,6 +85,12 @@ export default function NewPaletteForm() {
 
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+    const updateCurrentColor = (newColor) => {
+        setCurrentColor(newColor.hex)
+    };
+    const addNewColor = () => {
+        setColors([...colors, currentColor])
     };
 
     return (
@@ -129,8 +137,15 @@ export default function NewPaletteForm() {
                     <Button variant="contained" color="secondary">Clear Palette</Button>
                     <Button variant="contained" color="primary">Random Color</Button>
                 </div>
-                <ChromePicker color='purple' onChangeComplete={newColor => console.log(newColor)} />
-                <Button variant='contained' color='primary'>Add Color</Button>
+                <ChromePicker color={currentColor} onChangeComplete={updateCurrentColor} />
+                <Button
+                    variant='contained'
+                    color='primary'
+                    style={{ backgroundColor: currentColor }}
+                    onClick={addNewColor}
+                >
+                    Add Color
+                </Button>
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -138,6 +153,11 @@ export default function NewPaletteForm() {
                 })}
             >
                 <div className={classes.drawerHeader} />
+                <ul>
+                    {colors.map(color => (
+                        <li style={{ backgroundColor: color }}>{color}</li>
+                    ))}
+                </ul>
             </main>
         </div>
     );
