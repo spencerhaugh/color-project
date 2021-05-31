@@ -12,8 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker } from 'react-color';
-import DraggableColorBox from './DraggableColorBox';
+import DraggableColorList from './DragableColorList';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { arrayMove } from 'react-sortable-hoc';
 
 const drawerWidth = 400;
 
@@ -117,6 +118,9 @@ export default function NewPaletteForm(props) {
     const removeColor = (colorName) => {
         setColors(colors.filter(color => color.name !== colorName));
     }
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+        setColors(arrayMove(colors, oldIndex, newIndex))
+    }
 
     useEffect(() => {
         ValidatorForm.addValidationRule("isColorNameUnique", value => {
@@ -157,7 +161,7 @@ export default function NewPaletteForm(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Persistent drawer
+                        Create A Palette
                     </Typography>
                     <ValidatorForm onSubmit={handleSubmit}>
                         <TextValidator
@@ -227,15 +231,12 @@ export default function NewPaletteForm(props) {
                 })}
             >
                 <div className={classes.drawerHeader} />
-
-                {colors.map(color => (
-                    <DraggableColorBox
-                        color={color.color}
-                        name={color.name}
-                        key={color.name}
-                        handleClick={() => removeColor(color.name)}
-                    />
-                ))}
+                <DraggableColorList
+                    colors={colors}
+                    removeColor={removeColor}
+                    axis='xy'
+                    onSortEnd={onSortEnd}
+                />
             </main>
         </div >
     );
