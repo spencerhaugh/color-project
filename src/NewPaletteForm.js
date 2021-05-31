@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { ChromePicker } from 'react-color';
 import DraggableColorBox from './DraggableColorBox';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const drawerWidth = 400;
 
@@ -76,10 +77,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NewPaletteForm() {
     const classes = useStyles();
-    // const theme = useTheme();
     const [open, setOpen] = useState(false);
     const [currentColor, setCurrentColor] = useState('purple');
-    const [colors, setColors] = useState(["purple", "#e15764"])
+    const [colors, setColors] = useState([{ color: "purple", name: "Yeet Purple" }, { color: "#90d48b", name: "Bad Weed Green" }]);
+    const [newName, setNewName] = useState('');
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -92,8 +93,27 @@ export default function NewPaletteForm() {
         setCurrentColor(newColor.hex)
     };
     const addNewColor = () => {
-        setColors([...colors, currentColor])
+        const newColor = { color: currentColor, name: newName }
+        setColors([...colors, newColor])
+        setNewName('');
+
     };
+    const handleChange = (evt) => {
+        setNewName(evt.target.value)
+    };
+
+    useEffect(() => {
+        ValidatorForm.addValidationRule("isColorNameUnique", value => {
+            return colors.every(
+                ({ name }) => name.toLowerCase() !== value.toLowerCase()
+            );
+        });
+        ValidatorForm.addValidationRule("isColorUnique", value => {
+            return colors.every(
+                ({ color }) => color !== currentColor
+            );
+        });
+    });
 
     return (
         <div className={classes.root}>
@@ -139,15 +159,27 @@ export default function NewPaletteForm() {
                     <Button variant="contained" color="secondary">Clear Palette</Button>
                     <Button variant="contained" color="primary">Random Color</Button>
                 </div>
-                <ChromePicker color={currentColor} onChangeComplete={updateCurrentColor} />
-                <Button
-                    variant='contained'
-                    color='primary'
-                    style={{ backgroundColor: currentColor }}
-                    onClick={addNewColor}
-                >
-                    Add Color
+                <ChromePicker
+                    color={currentColor}
+                    onChangeComplete={updateCurrentColor}
+                />
+                <ValidatorForm onSubmit={addNewColor}>
+                    <Button
+                        variant='contained'
+                        type='submit'
+                        color='primary'
+                        style={{ backgroundColor: currentColor }}
+                    >
+                        Add Color
                 </Button>
+                    <TextValidator
+                        value={newName}
+                        onChange={handleChange}
+                        validators={['required', 'isColorNameUnique', 'isColorUnique']}
+                        errorMessages={['Enter a color name', 'Name must be unique', 'Color already in palette']}
+                    />
+                </ValidatorForm>
+
             </Drawer>
             <main
                 className={clsx(classes.content, {
@@ -157,7 +189,7 @@ export default function NewPaletteForm() {
                 <div className={classes.drawerHeader} />
 
                 {colors.map(color => (
-                    <DraggableColorBox color={color} />
+                    <DraggableColorBox color={color.color} name={color.name} />
                 ))}
             </main>
         </div >
