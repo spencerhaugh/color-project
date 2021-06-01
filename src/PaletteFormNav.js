@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PaletteMetaForm from './PaletteMetaForm';
 import { withStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
@@ -46,18 +47,11 @@ class PaletteFormNav extends Component {
         }
         this.handleChange = this.handleChange.bind(this);
     }
-    componentDidMount() {
-        ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
-            return this.props.palettes.every(
-                ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-            );
-        });
-    }
     handleChange(evt) {
         this.setState({ [evt.target.name]: evt.target.value })
     };
     render() {
-        const { classes, open, handleSubmit } = this.props;
+        const { classes, open, handleSubmit, palettes } = this.props;
         const { newPaletteName } = this.state;
         return (
             <div className={classes.root}>
@@ -84,23 +78,8 @@ class PaletteFormNav extends Component {
                     </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
-                        <ValidatorForm onSubmit={() => { handleSubmit(newPaletteName) }}>
-                            <TextValidator
-                                label="Palette name"
-                                value={newPaletteName}
-                                name='newPaletteName'
-                                onChange={this.handleChange}
-                                validators={["required", "isPaletteNameUnique"]}
-                                errorMessages={["Enter Palette Name", "Palette name taken"]}
-                            />
-                            <Button
-                                variant='contained'
-                                color='primary'
-                                type='submit'
-                            >
-                                Save Palette
-                        </Button>
-                        </ValidatorForm>
+
+                        <PaletteMetaForm handleSubmit={handleSubmit} palettes={palettes} />
                         <Link to='/'>
                             <Button
                                 variant='outlined'
