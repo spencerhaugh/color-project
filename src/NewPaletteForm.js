@@ -19,23 +19,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
     hide: {
         display: 'none',
     },
@@ -79,7 +62,7 @@ export default function NewPaletteForm(props) {
     // State Management
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [currentColor, setCurrentColor] = useState('purple');
+    // const [currentColor, setCurrentColor] = useState('purple');
     const [colors, setColors] = useState(props.palettes[0].colors);
     const [newName, setNewName] = useState({
         newColorName: '',
@@ -110,9 +93,9 @@ export default function NewPaletteForm(props) {
     const clearColors = () => {
         setColors([])
     };
-    const handleChange = (evt) => {
-        setNewName({ ...newName, [evt.target.name]: evt.target.value })
-    };
+    // const handleChange = (evt) => {
+    //     setNewName({ ...newName, [evt.target.name]: evt.target.value })
+    // };
     const handleSubmit = (submitName) => {
         // let submitName = newName.newPaletteName
         const newPalette = {
@@ -140,7 +123,7 @@ export default function NewPaletteForm(props) {
         <div className={classes.root}>
             <PaletteFormNav
                 open={open}
-                classes={classes}
+                // classes={classes}
                 palettes={props.palettes}
                 handleSubmit={handleSubmit}
                 handleDrawerOpen={handleDrawerOpen} />
