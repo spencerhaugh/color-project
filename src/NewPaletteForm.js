@@ -78,7 +78,6 @@ export default function NewPaletteForm(props) {
     // State Management
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    // const [currentColor, setCurrentColor] = useState('purple');
     const [colors, setColors] = useState(props.palettes[0].colors);
     const [newName, setNewName] = useState({
         newColorName: '',
@@ -90,6 +89,7 @@ export default function NewPaletteForm(props) {
     const paletteIsFull = colors.length >= maxColors
 
     // Component Methods
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -109,17 +109,10 @@ export default function NewPaletteForm(props) {
     const clearColors = () => {
         setColors([])
     };
-    // const handleChange = (evt) => {
-    //     setNewName({ ...newName, [evt.target.name]: evt.target.value })
-    // };
-    const handleSubmit = (submitName) => {
-        // let submitName = newName.newPaletteName
-        const newPalette = {
-            paletteName: submitName,
-            id: submitName.toLowerCase().replace(/ /g, '-'),
-            colors: colors
-        }
-        props.savePalette(newPalette);
+    const handleSubmit = (submitPalette) => {
+        submitPalette.id = submitPalette.paletteName.toLowerCase().replace(/ /g, '-');
+        submitPalette.colors = colors;
+        props.savePalette(submitPalette);
         props.history.push('/');
     };
     const removeColor = (colorName) => {
