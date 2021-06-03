@@ -7,10 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
+
 
 
 export default function PaletteMetaForm(props) {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const [paletteName, setPaletteName] = useState('')
 
     const handleClickOpen = () => {
@@ -32,7 +35,7 @@ export default function PaletteMetaForm(props) {
     })
 
     return (
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+        <Dialog open={open} onClose={props.hideForm} aria-labelledby="form-dialog-title" >
             <DialogTitle id="form-dialog-title">Choose A Palette</DialogTitle>
             <ValidatorForm onSubmit={() => { props.handleSubmit(paletteName) }}>
                 <DialogContent>
@@ -40,6 +43,7 @@ export default function PaletteMetaForm(props) {
                         Please enter a name for your new beautiful palette!
                         Make sure it's unique!
                     </DialogContentText>
+                    <Picker emoji='heart_eyes_cat' />
                     <TextValidator
                         label="Palette Name"
                         value={paletteName}
@@ -53,7 +57,7 @@ export default function PaletteMetaForm(props) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={props.hideForm} color="primary">
                         Cancel
                     </Button>
                     <Button
@@ -62,7 +66,7 @@ export default function PaletteMetaForm(props) {
                         type='submit'
                     >
                         Save Palette
-                        </Button>
+                    </Button>
                 </DialogActions>
             </ValidatorForm>
         </Dialog>
