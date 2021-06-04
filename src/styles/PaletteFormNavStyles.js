@@ -1,10 +1,11 @@
 import { DRAWER_WIDTH } from '../constants';
+import sizes from './mediaSizes';
 
 const drawerWidth = DRAWER_WIDTH;
 
 const styles = theme => ({
     root: {
-        display: "flex"
+        display: "flex",
     },
     hide: {
         display: 'none',
@@ -33,10 +34,17 @@ const styles = theme => ({
         marginRight: "1rem",
         "& a": {
             textDecoration: "none"
+        },
+        [sizes.down('xs')]: {
+            marginRight: "0.5rem"
         }
     },
     button: {
         margin: "0 0.5rem",
+        [sizes.down('xs')]: {
+            margin: "0.2rem",
+            padding: "0.2rem"
+        }
     },
 });
 
