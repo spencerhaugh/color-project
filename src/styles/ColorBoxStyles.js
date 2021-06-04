@@ -1,7 +1,8 @@
 import chroma from 'chroma-js';
+import sizes from './mediaSizes';
 
 export default {
-    colorBox: {
+    ColorBox: {
         width: '20%',
         height: props => props.showFullPalette ? '25%' : '50%',
         margin: '0 auto',
@@ -12,6 +13,18 @@ export default {
         "&:hover button": {
             opacity: '1'
         },
+        [sizes.down("lg")]: {
+            width: "25%",
+            height: props => props.showFullPalette ? '25%' : '33%',
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            height: props => props.showFullPalette ? '10%' : '33%',
+        },
+        [sizes.down("xs")]: {
+            width: "100%",
+            height: props => props.showFullPalette ? '5%' : '10%',
+        }
     },
     copyText: {
         color: props => chroma(props.background).luminance() >= .44 ? "#333" : "#fff"
