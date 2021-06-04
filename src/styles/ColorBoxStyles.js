@@ -15,11 +15,11 @@ export default {
         },
         [sizes.down("lg")]: {
             width: "25%",
-            height: props => props.showFullPalette ? '25%' : '33%',
+            height: props => props.showFullPalette ? '25%' : '33.333%',
         },
         [sizes.down("md")]: {
             width: "50%",
-            height: props => props.showFullPalette ? '10%' : '33%',
+            height: props => props.showFullPalette ? '10%' : '20%',
         },
         [sizes.down("xs")]: {
             width: "100%",

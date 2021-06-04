@@ -1,3 +1,5 @@
+import sizes from './mediaSizes';
+
 export default {
     Palette: {
         height: '98vh',
@@ -38,6 +40,18 @@ export default {
             border: 'none',
             transition: '0.5s',
             zIndex: '1',
-        }
+        },
+        [sizes.down("lg")]: {
+            width: "25%",
+            height: "33.333%"
+        },
+        [sizes.down("md")]: {
+            width: "50%",
+            height: "20%"
+        },
+        [sizes.down("xs")]: {
+            width: "100%",
+            height: "10%"
+        },
     },
 }
