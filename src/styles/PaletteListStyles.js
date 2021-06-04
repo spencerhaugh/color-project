@@ -1,7 +1,16 @@
 import sizes from './mediaSizes';
 import bg from './bg.svg';
 
-export default {
+const styles = {
+    "@global": {
+        ".fade-exit": {
+            opacity: 1,
+        },
+        ".fade-exit-active": {
+            opacity: 0,
+            transition: "opacity 0.5s ease-out"
+        },
+    },
     root: {
         height: "100vh",
         display: "flex",
@@ -54,3 +63,5 @@ export default {
         fontSize: "2rem"
     }
 };
+
+export default styles;

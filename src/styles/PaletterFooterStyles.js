@@ -1,4 +1,4 @@
-export default {
+const styles = {
     PaletteFooter: {
         backgroundColor: '#fff',
         height: '5vh',
@@ -11,4 +11,6 @@ export default {
         fontSize: '1.5rem',
         margin: '0 1rem',
     }
-}
+};
+
+export default styles;

@@ -13,7 +13,7 @@
 // Extra large devices (large desktops, 1200px and up)
 // No media query for `xl` since this is the default in this app
 
-export default {
+const sizes = {
     up() {
 
     },
@@ -28,3 +28,5 @@ export default {
         return `@media(max-width: ${sizes[size]})`
     }
 }
+
+export default sizes;

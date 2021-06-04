@@ -1,6 +1,6 @@
 import sizes from './mediaSizes';
 
-export default {
+const styles = {
     Palette: {
         height: '98vh',
         width: '100vw',
@@ -54,4 +54,6 @@ export default {
             height: "10%"
         },
     },
-}
+};
+
+export default styles;
