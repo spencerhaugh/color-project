@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
+import { arrayMove } from 'react-sortable-hoc';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
@@ -9,13 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DraggableColorList from './DragableColorList';
-import { arrayMove } from 'react-sortable-hoc';
 import useStyles from './styles/NewPaletteFormStyles';
 
 
-// React Functional Component
 export default function NewPaletteForm(props) {
-
     // State Management
     const classes = useStyles();
     const [open, setOpen] = useState(true);
@@ -24,13 +22,11 @@ export default function NewPaletteForm(props) {
         newColorName: '',
         newPaletteName: ''
     });
-
     // Default props
     const maxColors = 20;
     const paletteIsFull = colors.length >= maxColors
 
     // Component Methods
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -62,11 +58,6 @@ export default function NewPaletteForm(props) {
     const onSortEnd = ({ oldIndex, newIndex }) => {
         setColors(arrayMove(colors, oldIndex, newIndex))
     }
-
-    // Use Effect
-    useEffect(() => {
-
-    });
 
     // Component Return
     return (

@@ -15,13 +15,6 @@ export default function PaletteMetaForm(props) {
     const [stage, setStage] = useState('form');
     const [paletteName, setPaletteName] = useState('')
 
-    // const handleClickOpen = () => {
-    //     setOpen(true);
-    // };
-
-    // const handleClose = () => {
-    //     setOpen(false);
-    // };
     const handleChange = (evt) => {
         setPaletteName(evt.target.value)
     };
@@ -43,7 +36,6 @@ export default function PaletteMetaForm(props) {
             );
         });
     })
-
     return (
         <div>
             <Dialog open={stage === 'emoji'} onClose={props.hideForm} >
@@ -58,7 +50,6 @@ export default function PaletteMetaForm(props) {
                             Please enter a name for your new beautiful palette!
                             Make sure it's unique!
                     </DialogContentText>
-
                         <TextValidator
                             label="Palette Name"
                             value={paletteName}

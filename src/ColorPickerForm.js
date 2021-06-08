@@ -4,8 +4,6 @@ import Button from '@material-ui/core/Button';
 import { ChromePicker } from 'react-color';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import styles from './styles/ColorPickerFormStyles';
-
-
 class ColorPickerForm extends Component {
     constructor(props) {
         super(props);

@@ -33,7 +33,7 @@ class MiniPalette extends PureComponent {
                 </h5>
             </div>
         )
-    };
-}
+    }
+};
 
 export default withStyles(styles)(MiniPalette);
