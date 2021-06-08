@@ -20,9 +20,6 @@ class ColorBox extends Component {
     render() {
         const { name, background, moreUrl, showFullPalette, classes } = this.props;
         const { copied } = this.state;
-        // Determine the color luminance to apply styles light/dark against 
-        // const isDarkColor = chroma(background).luminance() <= .2; // chroma math to determine a Dark Color
-        // const isLightColor = chroma(background).luminance() >= .44; // chroma math to determine a Light color
 
         return (
             <CopyToClipboard text={background} onCopy={this.changeCopyState}>

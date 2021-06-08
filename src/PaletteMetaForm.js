@@ -34,6 +34,7 @@ export default function PaletteMetaForm(props) {
             emoji: emoji.native
         }
         props.handleSubmit(submitPalette)
+        setStage('')
     }
     useEffect(() => {
         ValidatorForm.addValidationRule("isPaletteNameUnique", value => {

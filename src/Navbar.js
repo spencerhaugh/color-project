@@ -33,7 +33,7 @@ class Navbar extends Component {
         return (
             <nav className={classes.Navbar}>
                 <div className={classes.logo}>
-                    <Link to='/'>Palette Builder</Link>
+                    <Link to='/'>Palette Maker</Link>
                 </div>
                 {!isShades && (<div className={classes.sliderContainer}>
                     <span>Level: {level}</span>
