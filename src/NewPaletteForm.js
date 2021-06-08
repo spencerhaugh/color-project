@@ -48,10 +48,14 @@ export default function NewPaletteForm(props) {
             randPalette = Math.floor(Math.random() * props.palettes.length);
             randColorBox = Math.floor(Math.random() * props.palettes[randPalette].colors.length);
             randColor = props.palettes[randPalette].colors[randColorBox];
-            isDuplicate = colors.some(color => color.name === randColor.name);
+            console.log(randColor)
+            isDuplicate = checkDuplicate(randColor.name);
         }
         setColors([...colors, randColor]);
-    }
+    };
+    const checkDuplicate = (colorName) => {
+        return colors.some(color => color.name === colorName);
+    };
     const clearColors = () => {
         setColors([])
     };
