@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/styles';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -48,8 +45,8 @@ class PaletteList extends Component {
     }
 
     render() {
-        const { palettes, classes, deletePalette } = this.props;
-        const { openDeleteDialog, deleteId } = this.state;
+        const { palettes, classes } = this.props;
+        const { openDeleteDialog } = this.state;
         return (
             <div className={classes.root}>
                 <div className={classes.container}>
@@ -72,7 +69,7 @@ class PaletteList extends Component {
                         }
                     </TransitionGroup>
                 </div>
-                <Dialog open={openDeleteDialog} aria-labrlledby='delete-dialog-title' onClose={this.closeDialog}>
+                <Dialog open={openDeleteDialog} aria-labelledby='delete-dialog-title' onClose={this.closeDialog}>
                     <DialogTitle id='delete-dialog-title'>Delete This Palette?</DialogTitle>
                     <List>
                         <ListItem button onClick={this.handleDelete}>
