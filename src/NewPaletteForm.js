@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PaletteFormNav from './PaletteFormNav';
 import ColorPickerForm from './ColorPickerForm';
-import { arrayMove } from 'react-sortable-hoc';
+import arrayMove from 'array-move';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
@@ -11,13 +11,14 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DraggableColorList from './DragableColorList';
 import useStyles from './styles/NewPaletteFormStyles';
+import seedColors from './seedColors';
 
 
 export default function NewPaletteForm(props) {
     // State Management
     const classes = useStyles();
     const [open, setOpen] = useState(true);
-    const [colors, setColors] = useState(props.palettes[0].colors);
+    const [colors, setColors] = useState(seedColors[0].colors);
     const [newName, setNewName] = useState({
         newColorName: '',
         newPaletteName: ''
