@@ -10,8 +10,8 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import DraggableColorList from './DragableColorList';
-import useStyles from './styles/NewPaletteFormStyles';
-import seedColors from './seedColors';
+import useStyles from '../styles/NewPaletteFormStyles';
+import seedColors from '../utilities/seedColors';
 
 
 export default function NewPaletteForm(props) {
@@ -106,7 +106,7 @@ export default function NewPaletteForm(props) {
                             onClick={clearColors}
                         >
                             Clear Palette
-                    </Button>
+                        </Button>
                         <Button
                             variant="contained"
                             color="primary"
@@ -115,7 +115,7 @@ export default function NewPaletteForm(props) {
                             disabled={paletteIsFull}
                         >
                             Random Color
-                    </Button>
+                        </Button>
                     </div>
                     <ColorPickerForm
                         paletteIsFull={paletteIsFull}

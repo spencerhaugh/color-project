@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import Palette from './Palette';
-import PaletteList from './PaletteList';
-import SingleColorPalette from './SingleColorPalette';
-import NewPaletteForm from './NewPaletteForm';
-import Page from './Page';
-import seedColors from './seedColors';
-import { generatePalette } from './colorHelpers';
+import Palette from './components/Palette';
+import PaletteList from './components/PaletteList';
+import SingleColorPalette from './components/SingleColorPalette';
+import NewPaletteForm from './components/NewPaletteForm';
+import Page from './components/Page';
+import seedColors from './utilities/seedColors';
+import { generatePalette } from './utilities/colorHelpers';
 
 function App() {
 

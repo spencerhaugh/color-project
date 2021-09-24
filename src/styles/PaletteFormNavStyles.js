@@ -1,4 +1,4 @@
-import { DRAWER_WIDTH } from '../constants';
+import { DRAWER_WIDTH } from '../utilities/constants';
 import sizes from './mediaSizes';
 
 const drawerWidth = DRAWER_WIDTH;

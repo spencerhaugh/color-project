@@ -1,5 +1,5 @@
 import sizes from './mediaSizes';
-import bg from './bg.svg';
+import bg from '../assets/bg.svg';
 
 const styles = {
     "@global": {

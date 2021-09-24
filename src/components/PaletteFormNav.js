@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { withStyles } from '@material-ui/core/styles';
 import PaletteMetaForm from './PaletteMetaForm';
-import styles from './styles/PaletteFormNavStyles';
+import styles from '../styles/PaletteFormNavStyles';
 
 class PaletteFormNav extends Component {
     constructor(props) {
@@ -52,7 +52,7 @@ class PaletteFormNav extends Component {
                         </IconButton>
                         <Typography variant="h6" noWrap>
                             Create A Palette
-                    </Typography>
+                        </Typography>
                     </Toolbar>
                     <div className={classes.navBtns}>
                         <Link to='/'>
@@ -62,7 +62,7 @@ class PaletteFormNav extends Component {
                                 className={classes.button}
                             >
                                 Go Back
-                        </Button>
+                            </Button>
                         </Link>
                         <Button
                             variant="outlined"

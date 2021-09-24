@@ -1,6 +1,6 @@
 
 import { makeStyles } from '@material-ui/core/styles';
-import { DRAWER_WIDTH } from "../constants";
+import { DRAWER_WIDTH } from '../utilities/constants';
 
 const drawerWidth = DRAWER_WIDTH;
 
